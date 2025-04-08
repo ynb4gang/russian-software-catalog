@@ -1,5 +1,3 @@
-# russian-software-catalog
-
 # Russian Software Catalog
 
 A web application that serves as a catalog of Russian software products with search, filtering and management capabilities.
