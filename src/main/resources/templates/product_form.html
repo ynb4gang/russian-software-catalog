@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить продукт</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', sans-serif;
+            padding: 60px 15px;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label.form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            border-color: #1d72b8;
+            box-shadow: 0 0 0 0.2rem rgba(29, 114, 184, 0.25);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #1d72b8, #158cba);
+            color: white;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #158cba, #1d72b8);
+            transform: translateY(-1px);
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #1d72b8;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-link i {
+            margin-right: 6px;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+<a href="/" class="back-link"><i class="bi bi-arrow-left"></i> Назад</a>
+
+<div class="form-container">
+    <h2>Добавление нового ПО</h2>
+
+    <form th:action="@{/product/new}" method="post" th:object="${product}" novalidate>
+        <div class="mb-3">
+            <label class="form-label">Название <span class="text-danger">*</span></label>
+            <input type="text" th:field="*{name}" class="form-control" required placeholder="Пример: MySoft">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Описание</label>
+            <textarea th:field="*{description}" class="form-control" rows="4" placeholder="Опишите основное назначение ПО..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Категория</label>
+            <input type="text" th:field="*{category}" class="form-control" placeholder="Пример: Аналитика, CRM, Безопасность">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Разработчик</label>
+            <input type="text" th:field="*{developer}" class="form-control" placeholder="Название компании или разработчика">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Сайт</label>
+            <input type="url" th:field="*{websiteUrl}" class="form-control" placeholder="https://example.com">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ссылка на скачивание</label>
+            <input type="url" th:field="*{downloadUrl}" class="form-control" placeholder="https://example.com/download">
+            <div class="form-note">Укажите прямую ссылку на скачивание, если есть</div>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Версия</label>
+            <input type="text" th:field="*{version}" class="form-control" placeholder="Пример: 1.0.3">
+        </div>
+
+        <button type="submit" class="btn btn-gradient w-100"><i class="bi bi-check-circle me-2"></i>Сохранить</button>
+    </form>
+</div>
+</body>
+</html>
